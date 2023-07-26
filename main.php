@@ -1,13 +1,18 @@
-<?php include 'templateheader.php' ?>
+<?php include 'templateheader.php';
+
+?>
 
 <?php 
     include_once "modelo/conexionReg.php";
     $sentencia = $db -> query("select * from persona");
     $persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
+// Verificar si la variable de sesión 'id_rol' está definida y obtener su valor
+$id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
 
 ?>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="container mt-5">
+       
     <div class="row justify-content-center">
         <div class="col-md-7">
             <div class="card-header">
@@ -35,9 +40,18 @@
                             <td><?php echo $dato->nombreP; ?></td>
                             <td><?php echo $dato->edadP; ?></td>
                             <td><?php echo $dato->signoP; ?></td>
+                            <?php if ($id_rol == 1) 
+                            { ?>
                             <td><a class="text-success btn-editar" href="#" data-id="<?php echo $dato->idP; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                            <td ><a onclick="return confirm('Estas seguro de eliminar el registro?');" class="text-danger" href="vista/eliminar.php?idP=<?php echo $dato->idP; ?>"><i class="bi bi-trash"></i></a></td>
-                            
+                            <td><a onclick="return confirm('Estas seguro de eliminar el registro?');" class="text-danger" href="vista/eliminar.php?idP=<?php echo $dato->idP; ?>"><i class="bi bi-trash"></i></a></td>
+                            <?php
+                                 } else { 
+                            ?>
+                                    <td><button class="btn btn-secondary" disabled><i class="bi bi-pencil-square"></i></button></td>
+                                    <td><button class="btn btn-secondary" disabled><i class="bi bi-trash"></i></button></td>
+                            <?php 
+                                 } 
+                            ?>
                         </tr>
                         <?php
                             }
