@@ -1,0 +1,29 @@
+body{
+    background-color: #ece3c4;
+    background: linear-gradient(to right, #1b416d , #ece3c4  );
+    height: auto;
+}
+
+.bg{
+    background-image: url(img/inicio-login.png);
+    background-position: center center;
+    height: 600px;
+    background-size: cover;
+}
+
+body .modal-content{
+    color: #ffffff;
+    background-color: rgba(27, 65, 109, 0.5);
+}
+
+body .btnIngresar{
+width: 150px;
+}
+
+body .divIngresar{
+text-align: center;
+}
+
+.loginVentana{
+    height: 600px;
+}
