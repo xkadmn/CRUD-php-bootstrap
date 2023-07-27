@@ -1,4 +1,5 @@
 <?php 
+    
     print_r ($_POST);
     if(!isset($_POST['codigo'])){
         header('Location: ../main.php?mensaje=error');

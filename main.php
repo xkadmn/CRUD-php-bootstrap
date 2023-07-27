@@ -1,6 +1,4 @@
-<?php include 'templateheader.php';
-
-?>
+<?php include 'templateheader.php';?>
 
 <?php 
     include_once "modelo/conexionReg.php";
@@ -10,71 +8,95 @@
 $id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
 
 ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<div class="container mt-5">
-       
-    <div class="row justify-content-center">
+ <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<div class="container ">     
+    <div class="row">
         <div class="col-md-7">
-            <div class="card-header">
-                Lista de personas
-            </div>
             <div class="p-4">
-                <table class="table align-middle">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">edad</th>
-                            <th scope="col">signo</th>
-                            <th scope="col">descripcion</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            foreach($persona as $dato){
-
-                            
-                        ?>
-                        <tr>
-                            <td scope="row"><?php echo $dato->idP; ?></td>
-                            <td><?php echo $dato->nombreP; ?></td>
-                            <td><?php echo $dato->edadP; ?></td>
-                            <td><?php echo $dato->signoP; ?></td>
-                            <?php if ($id_rol == 1) 
-                            { ?>
-                            <td><a class="text-success btn-editar" href="#" data-id="<?php echo $dato->idP; ?>"><i class="bi bi-pencil-square"></i></a></td>
-                            <td><a onclick="return confirm('Estas seguro de eliminar el registro?');" class="text-danger" href="vista/eliminar.php?idP=<?php echo $dato->idP; ?>"><i class="bi bi-trash"></i></a></td>
+             
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">edad</th>
+                                <th scope="col">signo</th>
+                                <th scope="col">descripcion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php
-                                 } else { 
+                                foreach($persona as $dato){
+
+                                
                             ?>
-                                    <td><button class="btn btn-secondary" disabled><i class="bi bi-pencil-square"></i></button></td>
-                                    <td><button class="btn btn-secondary" disabled><i class="bi bi-trash"></i></button></td>
-                            <?php 
-                                 } 
+                            <tr>
+                                <td scope="row"><?php echo $dato->idP; ?></td>
+                                <td><?php echo $dato->nombreP; ?></td>
+                                <td><?php echo $dato->edadP; ?></td>
+                                <td><?php echo $dato->signoP; ?></td>
+                                <?php if ($id_rol == 1) 
+                                { ?>
+                                <td><a class="text-success btn-editar" href="#" data-id="<?php echo $dato->idP; ?>"><i class="bi bi-trash"></i></a></td>
+                                <td><a onclick="return confirm('Estas seguro de eliminar el registro?');" class="text-danger" href="vista/eliminar.php?idP=<?php echo $dato->idP; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <?php
+                                    } else { 
+                                ?>
+                                        <td><button class="btn btn-secondary" disabled><i class="bi bi-pencil-square"></i></button></td>
+                                        <td><button class="btn btn-secondary" disabled><i class="bi bi-trash"></i></button></td>
+                                <?php 
+                                    } 
+                                ?>
+                            </tr>
+                            <?php
+                                }
                             ?>
-                        </tr>
-                        <?php
-                            }
-                         ?>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+              
             </div>
         </div>   
 
-        <!-- Modal para mostrar la información del otro PHP -->
-<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="infoModalLabel">Editar datos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        
+        <div class="col-md-5">
+        <div class="card">
+                <div class="card-header">
+                    Ingresar datos
+                </div>
+                <form class="p-4" method="POST" action="controlador/controlador_registrar.php">
+                    <div class="mb-3">
+                        <label class="form-label"> Nombre: </label>
+                        <input type="text" class="form-control" name="txtNombre" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"> Edad: </label>
+                        <input type="number" class="form-control" name="txtEdad" autofocus required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"> Signo: </label>
+                        <input type="text" class="form-control" name="txtSigno" autofocus required>
+                    </div>
+                    <div class="d-grid">
+                        <input type="hidden" name="oculto" value="1">
+                        <input type="submit" class="btn btn-primary" value="Registrar">
+                    </div>
+                </form>
             </div>
-            <div class="modal-body" id="infoModalBody">
-                <!-- Aquí se cargará el contenido del otro PHP mediante AJAX -->
+   
+
+
+
+            <!-- Modal para mostrar la información del otro PHP -->
+        <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" id="infoModalBody">
+                        <!-- Aquí se cargará el contenido del otro PHP mediante AJAX -->
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
         <div class="col-md-4">
 
@@ -134,33 +156,7 @@ $id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
             <?php
                 };
             ?>
-
-
-
-
-            <div class="card">
-                <div class="card-header">
-                    Ingresar datos
-                </div>
-                <form class="p-4" method="POST" action="vista/registrar.php">
-                    <div class="mb-3">
-                        <label class="form-label"> Nombre: </label>
-                        <input type="text" class="form-control" name="txtNombre" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label"> Edad: </label>
-                        <input type="number" class="form-control" name="txtEdad" autofocus required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label"> Signo: </label>
-                        <input type="text" class="form-control" name="txtSigno" autofocus required>
-                    </div>
-                    <div class="d-grid">
-                        <input type="hidden" name="oculto" value="1">
-                        <input type="submit" class="btn btn-primary" value="Registrar">
-                    </div>
-                </form>
-            </div>
+        </div>
         </div>
     </div>
 </div>

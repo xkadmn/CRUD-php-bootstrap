@@ -25,17 +25,7 @@ if ($filas !== null && $filas !== ' ' && isset($filas['id_rol'])) {
         <h6>error</h6>
         <?php
     }
-    /*if($filas['id_rol'] == '2'){
-        header ("location:../main.php");
-    }else if($filas['id_rol'] == '1'){
-        header ("location:../admin.php");
-    }else{
-        header ("location:../login.php"); 
-       $_SESSION['error_message'] = "Error de autenticación";
-        ?>
-        <h6>error</h6>
-        <?php
-    }*/
+   
 } else {
     header ("location:../login.php");  
     $_SESSION['error_message'] = "Error de autenticación";
