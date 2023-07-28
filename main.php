@@ -8,9 +8,10 @@
     $id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
 
 ?>
- <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<div class="container ">     
+<div class="container contGeneral ">     
     <div class="row">
         <div class="col-md-7">
             <div class="p-4">
@@ -18,11 +19,12 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col"></th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">edad</th>
                                 <th scope="col">signo</th>
-                                <th scope="col">descripcion</th>
+                                <th scope="col">editar</th>                 
+                                <th scope="col" unset>borrar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +40,7 @@
                                 <td><?php echo $dato->signoP; ?></td>
                                 <?php if ($id_rol == 1) 
                                 { ?>
+                               
                                 <td><a class="text-success btn-editar" href="#" data-id="<?php echo $dato->idP; ?>"><i class="bi bi-trash"></i></a></td>
                                 <td><a onclick="return confirm('Estas seguro de eliminar el registro?');" class="text-danger" href="vista/eliminar.php?idP=<?php echo $dato->idP; ?>"><i class="bi bi-pencil-square"></i></a></td>
                                 <?php
@@ -48,6 +51,7 @@
                                 <?php 
                                     } 
                                 ?>
+                             
                             </tr>
                             <?php
                                 }
@@ -59,7 +63,7 @@
         </div>   
 
         
-        <div class="col-md-5">
+        <div class="col-md-5 contRegistronuevo">
         <div class="card">
                 <div class="card-header">
                     Ingresar datos
@@ -68,24 +72,24 @@
                     <div class="mb-3">
                         <label class="form-label"> Nombre: </label>
                         <input type="text" class="form-control" name="txtNombre" autofocus required>
+                        <div id="edadError" class="text-danger"></div> <!-- Mensaje de error -->
                     </div>
                     <div class="mb-3">
                         <label class="form-label"> Edad: </label>
                         <input type="number" class="form-control" name="txtEdad" autofocus required>
+                        <div id="edadError" class="text-danger"></div> <!-- Mensaje de error -->
                     </div>
                     <div class="mb-3">
                         <label class="form-label"> Signo: </label>
                         <input type="text" class="form-control" name="txtSigno" autofocus required>
+                        <div id="signoError" class="text-danger"></div> <!-- Mensaje de error -->
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="oculto" value="1">
-                        <input type="submit" class="btn btn-primary" value="Registrar">
+                        <input type="submit" class="btn btn-primary" value="Registrar" onclick="return validarCampos();">
                     </div>
                 </form>
             </div>
-   
-
-
 
             <!-- Modal para mostrar la información del otro PHP -->
         <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
@@ -97,16 +101,22 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-md-4">
-
+        <div class="col-md">
+        <script>    
+            window.addEventListener('DOMContentLoaded', function () { // Mostrar la alerta cuando la página se haya cargado
+                var alerta = document.getElementById('alerta');
+                alerta.style.display = 'block';  
+                setTimeout(function () { // Ocultar la alerta después de 1 segundo
+                    alerta.style.display = 'none';
+                }, 2000);
+             });
+        </script>
             <?php
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta'){
                     
             ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Error </strong>Complete todos los campos
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert"id="alerta">
+                <strong>Error </strong>Complete todos los campos.
             </div>
             <?php
             
@@ -116,9 +126,8 @@
             <?php
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'registrado'){                   
             ?>
-            <div class="alert alert-success alert-dismisible fade show" role="alert">
+            <div class="alert alert-success alert-dismisible fade show" role="alert" id="alerta">
                 <strong>Registrado </strong>Se agregaron los datos.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php
                 };
@@ -127,9 +136,8 @@
             <?php
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'error'){                   
             ?>
-            <div class="alert alert-danger alert-dismisible fade show" role="alert">
+            <div class="alert alert-danger alert-dismisible fade show" role="alert" id="alerta">
                 <strong>Error </strong>Vuelve a intentar
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <?php
                 };
@@ -138,9 +146,8 @@
             <?php
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'editado'){                   
             ?>
-            <div class="alert alert-success alert-dismisible fade show" role="alert">
-                <strong><i class="bi bi-person-fill-check"></i></strong> Se han cambiado los datos.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <div class="alert alert-success alert-dismisible fade show" role="alert" id="alerta">
+                <strong><i class="bi bi-person-fill-check"></i></strong> Datos editados con exito.
             </div>
             <?php
                 };
@@ -149,9 +156,38 @@
             <?php
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'eliminado'){                   
             ?>
-            <div class="alert alert-danger alert-dismisible fade show" role="alert">
+            <div class="alert alert-danger alert-dismisible fade show" role="alert" id="alerta">
                 <strong><i class="bi bi-person-fill-x"></i></strong> Se ha eliminado el registro.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php
+                };
+            ?>
+
+            <?php
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'nombreinvalid'){                   
+            ?>
+            <div class="alert alert-danger alert-dismisible fade show" role="alert" id="alerta">
+                <strong><i class="bi bi-person-fill-x"></i></strong> Nombre incorrecto.
+            </div>
+            <?php
+                };
+            ?>
+
+            <?php
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'edadinvalid'){                   
+            ?>
+            <div class="alert alert-danger alert-dismisible fade show" role="alert" id="alerta">
+                <strong><i class="bi bi-person-fill-x"></i></strong> La edad debe ser entre 0 y 99 años.
+            </div>
+            <?php
+                };
+            ?>
+
+            <?php
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'signoinvalid'){                   
+            ?>
+            <div class="alert alert-danger alert-dismisible fade show" role="alert" id="alerta">
+                <strong><i class="bi bi-person-fill-x"></i></strong> Ingrese un signo zodiacal.
             </div>
             <?php
                 };
@@ -160,6 +196,8 @@
         </div>
     </div>
 </div>
+
+
 <!-- esto al final -->
 <script>
   // Función para cargar el contenido del otro PHP en el modal

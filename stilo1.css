@@ -1,0 +1,56 @@
+body{
+    background-color: #ece3c4;
+    background: linear-gradient(to right, #1b416d , #ece3c4  );
+    background-image: url(img/inicio-login.png);
+    background-size: cover;
+}
+
+.header {
+    background: linear-gradient(to right, #1b416d , #ece3c4  );
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Asegura que el header esté por encima del contenido */
+   
+}
+/* Estilos adicionales para ajustar el header según tus especificaciones */
+.section1 {
+    height: 15%; /* Altura común para todas las secciones */
+    display: flex;
+    align-items: center;
+    border: none; /* Sin bordes divisorios entre las secciones */
+}
+.section-60 {
+    flex-basis: 60%; /* 60% de ancho para esta sección */
+}
+
+.section-15 {
+    flex-basis: 15%; /* 15% de ancho para cada una de estas secciones */
+}
+
+.section-text {
+    color: black; /* Color del texto del header */
+    font-family: Verdana;
+    font-size: 20pt;
+}
+
+.contGeneral{
+    padding-top: 2%;
+    padding-bottom: 10%;
+}       
+  
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    margin: 1%;
+  }
+
+  th{
+    width: 100%;
+  }
+ 
+.contRegistronuevo{
+    padding-top: 3%;
+}

@@ -14,25 +14,42 @@ $email = $_SESSION['email'];
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">    
-    <link rel="stylesheet" type="" href="stilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" type="" href="stilo1.css">
+
+
+    <style>
+    </style>
+</head>
+
+
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col py-3">
-                <h5 class="text-center"> CRUD main</h5>
-            </div>
-            <div class="col d-flex justify-content-end align-items-center">
-                <?php echo $email; ?>
-                <a class="nav-link" href="./modelo/cerrarsession.php">cerrar</a>
+    <nav class=header>
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Sección 1 con 60% de ancho -->
+                <div class="col section1 section-60">
+                    <a class="text-center text-white"> CRUD main</a>
+                </div>
+
+                <!-- Sección 2 con 15% de ancho -->
+                <div class="col section1 section-15">
+                    <?php echo $email; ?>
+                </div>
+
+                <!-- Sección 3 con 15% de ancho -->
+                <div class="col section1 section-15">
+                    <a class="nav-link" href="./modelo/cerrarsession.php">cerrar</a>
+                </div>
             </div>
         </div>
-    </div>
-
-
+    </nav>
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
-  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
