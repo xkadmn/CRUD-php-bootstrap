@@ -27,3 +27,15 @@ text-align: center;
 .loginVentana{
     height: 600px;
 }
+
+/* Estilos para el alerta de registro exitoso */
+/* Estilo para el alerta de éxito */
+.alert.alert-success {
+    opacity: 1; /* Hacer el alerta visible */
+    transition: opacity 2s ease-in-out; /* Transición de opacidad con duración de 2 segundos */
+  }
+  
+  /* Estilo para difuminar el alerta */
+  .alert.alert-success.hide {
+    opacity: 0; /* Ocultar el alerta */
+  }

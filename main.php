@@ -5,7 +5,7 @@
     $sentencia = $db -> query("select * from persona");
     $persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
 // Verificar si la variable de sesión 'id_rol' está definida y obtener su valor
-$id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
+    $id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
 
 ?>
  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
@@ -160,7 +160,7 @@ $id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
         </div>
     </div>
 </div>
-<!-- Agrega esto al final del archivo PHP que muestra el CRUD -->
+<!-- esto al final -->
 <script>
   // Función para cargar el contenido del otro PHP en el modal
   function cargarContenidoModal(idRegistro) {
@@ -185,5 +185,9 @@ $id_rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
     cargarContenidoModal(idRegistro);
   });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"  crossorigin="anonymous"></script>
 
 <?php include 'templatefooter.php' ?>
