@@ -29,9 +29,10 @@ if (!is_numeric($edad) || $edad < 0 || $edad > 99) {
     exit();
 }
 
+
 // Validar que el signo sea uno de los signos zodiacales válidos
-$signosValidos = array("aries", "tauro", "géminis", "cáncer", "leo", "virgo", "libra", "escorpio", "sagitario", "capricornio", "acuario", "piscis");
-if (!in_array(strtolower($signo), $signosValidos)) {
+$signosValidos = array("Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis");
+if (!in_array($signo, $signosValidos)) {
     header('Location: ../main.php?mensaje=signoinvalid');
     exit();
 }

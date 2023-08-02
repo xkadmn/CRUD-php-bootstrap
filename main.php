@@ -19,7 +19,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"></th>
+                                <!--<th scope="col" class="ocultar-columna"></th>-->
                                 <th scope="col">Nombre</th>
                                 <th scope="col">edad</th>
                                 <th scope="col">signo</th>
@@ -34,7 +34,7 @@
                                 
                             ?>
                             <tr>
-                                <td scope="row"><?php echo $dato->idP; ?></td>
+                                <!--<td scope="row" class="ocultar-columna"><?php echo $dato->idP; ?> </td>-->
                                 <td><?php echo $dato->nombreP; ?></td>
                                 <td><?php echo $dato->edadP; ?></td>
                                 <td><?php echo $dato->signoP; ?></td>
@@ -79,15 +79,46 @@
                         <input type="number" class="form-control" name="txtEdad" autofocus required>
                         <div id="edadError" class="text-danger"></div> <!-- Mensaje de error -->
                     </div>
+                    <!-- ... (otras partes del formulario) ... -->
                     <div class="mb-3">
                         <label class="form-label"> Signo: </label>
-                        <input type="text" class="form-control" name="txtSigno" autofocus required>
-                        <div id="signoError" class="text-danger"></div> <!-- Mensaje de error -->
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                Selecciona un signo
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> 
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Aries');">Aries</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Tauro');">Tauro</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Géminis');">Géminis</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Cáncer');">Cáncer</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Leo');">Leo</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Virgo');">Virgo</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Libra');">Libra</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Escorpio');">Escorpio</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Sagitario');">Sagitario</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Capricornio');">Capricornio</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Acuario');">Acuario</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="seleccionarSigno('Piscis');">Piscis</a></li>
+                            </ul>
+                            <input type="hidden" id="txtSigno" name="txtSigno" value="">
+                        </div>
                     </div>
+
+                    
+                    <script>
+                        function seleccionarSigno(signo) {
+                            document.getElementById('txtSigno').value = signo;
+                            document.querySelector('.btn-secondary').textContent = signo;
+                        }
+                    </script>
+
+                    
                     <div class="d-grid">
                         <input type="hidden" name="oculto" value="1">
                         <input type="submit" class="btn btn-primary" value="Registrar" onclick="return validarCampos();">
                     </div>
+
+
                 </form>
             </div>
 

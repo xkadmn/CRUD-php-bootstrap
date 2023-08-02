@@ -1,3 +1,4 @@
+
 body{
     background-color: #ece3c4;
     background: linear-gradient(to right, #1b416d , #ece3c4  );
@@ -10,7 +11,6 @@ body{
     height: 600px;
     background-size: cover;
 }
-
 
 body .btnIngresar{
 width: 150px;

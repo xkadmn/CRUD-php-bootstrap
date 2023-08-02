@@ -1,4 +1,10 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@300;800&display=swap');
+
+
 body{
+    
     background-color: #ece3c4;
     background: linear-gradient(to right, #1b416d , #ece3c4  );
     background-image: url(img/inicio-login.png);
@@ -6,6 +12,7 @@ body{
 }
 
 .header {
+    font-family: 'Handjet', cursive;
     background: linear-gradient(to right, #1b416d , #ece3c4  );
     position: fixed;
     top: 0;
@@ -54,3 +61,4 @@ table {
 .contRegistronuevo{
     padding-top: 3%;
 }
+

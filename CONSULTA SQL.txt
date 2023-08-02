@@ -1,0 +1,33 @@
+-- Crear la base de datos
+CREATE DATABASE login CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
+-- Usar la base de datos creada
+USE login;
+
+-- Crear la tabla rol
+CREATE TABLE rol (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    descripcion VARCHAR(250) COLLATE utf8mb4_general_ci
+);
+
+-- Insertar valores iniciales en la tabla rol
+INSERT INTO rol (descripcion) VALUES
+    ('administrador'),
+    ('usuario');
+
+-- Crear la tabla persona
+CREATE TABLE persona (
+    idP INT AUTO_INCREMENT PRIMARY KEY,
+    nombreP VARCHAR(100) COLLATE utf8mb4_general_ci NOT NULL,
+    edadP INT NOT NULL,
+    signoP VARCHAR(100) NOT NULL
+);
+
+-- Crear la tabla login
+CREATE TABLE login (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) COLLATE utf8mb4_general_ci,
+    pass VARCHAR(250) COLLATE utf8mb4_general_ci,
+    id_rol INT,
+    FOREIGN KEY (id_rol) REFERENCES rol(id)
+);

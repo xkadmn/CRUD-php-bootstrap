@@ -9,13 +9,36 @@
 <div class="container mt-5">
     
             <!-- alerta -->
+            <script>
+            // Mostrar la alerta cuando la página se haya cargado
+            window.addEventListener('DOMContentLoaded', function () {
+                var alerta = document.getElementById('alerta');
+                alerta.style.display = 'block';
+
+                // Ocultar la alerta después de 1 segundo
+                setTimeout(function () {
+                alerta.style.display = 'none';
+                }, 2000);
+            });
+            </script>
             <?php
                 if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta'){
                     
             ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alerta">
                 <strong>El Email ya existe ;  </strong> Intente con otro.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php
+            
+                };
+            ?>
+
+            <?php
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta1'){
+                    
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alerta">
+                <strong>Campos vacíos ;  </strong> Complete los campos.
             </div>
             <?php
             
@@ -31,16 +54,14 @@
          <h2 class="card-header fw-bold text-center py-5">Registrate</h2>
             
              <form method="POST" action="../controlador/controlador_register.php">
-                <div class="mb-4">
-                    <label for="email" class="form-label">Correo Electrónico</label>
+                <div class="mb-4 form-floating">
                     <input type="email" class="form-control" name="email_reg">
-
+                    <label for="email" class="form-label">Correo Electrónico</label>
                 </div>
 
-                <div class="mb-4">
-                    <label for="password" class="form-label">Contraseña</label>
+                <div class="mb-4 form-floating">
                     <input type="password" class="form-control" name="pass_reg">
-
+                    <label for="password" class="form-label">Contraseña</label>
                 </div>
                 <div class="mb-4">
                     <input type="checkbox" name="admin_Reg" class="form-check-input">
