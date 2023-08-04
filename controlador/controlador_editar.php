@@ -10,16 +10,24 @@
     $nombre = $_POST['txtNombre'];
     $edad = $_POST['txtEdad'];
     $signo = $_POST['txtSigno'];
+    $signosValidos = array("Aries", "Tauro", "Géminis", "Cáncer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario", "Capricornio", "Acuario", "Piscis");
+    $signoLower = strtolower($signo);
+    $signosValidosLower = array_map('strtolower', $signosValidos);
 
-    $sentencia = $db->prepare("UPDATE persona SET nombreP = ? , edadP = ?, signoP = ? where idP = ?");
-    $resultado = $sentencia->execute([$nombre, $edad, $signo, $codigo]);
-
-    if($resultado === TRUE){
-        header('Location:  ../main.php?mensaje=editado');
-    } else{
+    if (!in_array($signoLower, $signosValidosLower)) {
         header('Location:  ../main.php?mensaje=error');
         exit();
+    
+    }else{
+        $sentencia = $db->prepare("UPDATE persona SET nombreP = ? , edadP = ?, signoP = ? where idP = ?");
+        $resultado = $sentencia->execute([$nombre, $edad, $signo, $codigo]);
+
+        if($resultado === TRUE){
+            header('Location:  ../main.php?mensaje=editado');
+        } else{
+            header('Location:  ../main.php?mensaje=error');
+            exit();
+        }
+
     }
-
-
 ?>

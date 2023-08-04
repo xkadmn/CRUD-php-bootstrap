@@ -1,7 +1,8 @@
-<footer class="container-fluid bg-dark fixed-bottom">
+
+<footer class="container-fluid bg-dark fixed-bottom footer">
     <div class="row">
         <div class="col-md text-light text-center py-3">
-            Desarrollado por BIRIBI BIRIBI
+            Blanca Oksentiuk - Prácticas Profesionalizantes II
         </div>
     </div>
 </footer>

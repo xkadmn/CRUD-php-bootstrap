@@ -45,6 +45,18 @@
                 };
             ?>
 
+            <?php
+                if(isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta2'){
+                    
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alerta">
+                <strong>Campo incorrecto ;  </strong> Debe ingresar un mail válido.
+            </div>
+            <?php
+            
+                };
+            ?>
+
 
     <div class="row justify-content-center">
       <div class="col-md-8">
@@ -64,7 +76,7 @@
                     <label for="password" class="form-label">Contraseña</label>
                 </div>
                 <div class="mb-4">
-                    <input type="checkbox" name="admin_Reg" class="form-check-input">
+                    <input type="checkbox" name="admin_reg" class="form-check-input">
                     <label for="conectado" class="form-check-label">Administrador</label>
                 </div>
                 

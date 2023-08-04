@@ -81,17 +81,16 @@ if (session_status() === PHP_SESSION_NONE) {
                 </div>
 
                 <div class="divIngresar">
-                    <input type="submit" class="btn btn-primary btnIngresar" name="btnIngresar" value="iniciar"> 
-
+                    <input type="submit" class="btn btn-outline-danger btnIngresar" name="btnIngresar" value="iniciar"> 
+                    <a href="vista/register.php"><button class="btn btn-outline-primary  btn-register" type="button" value="">Registrate</button></a>
                 </div>
                
             </form>
                 <div class="my-3 d-flex justify-content-center">
-                    <a href="vista/register.php"><button class="btn btn-outline-secondary me-2 btn-register" type="button" value="">Registrate</button></a>
-                    <button class="btn btn-outline-secondary" type="button">Recuperar contraseña</button>
+                   
                 </div>
                 
-            <!--- LOGIN CON REDES SOCIALES--->
+            <!--- LOGIN CON REDES SOCIALES
             <div class="container w-100 my-5">
                 <div class="row">
                     <div class="col">
@@ -120,7 +119,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         </button>
                     </div>                   
                 </div>
-            </div>
+            </div>--->
 
         </div>
     

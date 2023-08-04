@@ -18,7 +18,7 @@ if (trim($nombre) === '') {
 }
 
 // Validar que el nombre solo contenga letras y espacios
-if (!preg_match("/^[a-zA-Z ]+$/", $nombre)) {
+if (!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/", $nombre)) {
     header('Location: ../main.php?mensaje=nombreinvalid');
     exit();
 }

@@ -27,7 +27,7 @@ $email = $_SESSION['email'];
 
 
 <body>
-    <nav class=header>
+    <nav class=header1>
         <div class="container-fluid">
             <div class="row">
                 <!-- Sección 1 con 60% de ancho -->
@@ -37,12 +37,13 @@ $email = $_SESSION['email'];
 
                 <!-- Sección 2 con 15% de ancho -->
                 <div class="col section1 section-15">
-                    <?php echo $email; ?>
+                   <a class="text-center text-white"> Mail logueado: <?php echo $email; ?></a>
                 </div>
 
                 <!-- Sección 3 con 15% de ancho -->
-                <div class="col section1 section-15">
-                    <a class="nav-link" href="./modelo/cerrarsession.php">cerrar</a>
+                <div class="col section1 section-15 ml-auto">
+                
+                    <a class="nav-link text-white  text-right" href="./modelo/cerrarsession.php"><i class="bi bi-x-circle-fill"></i></a>
                 </div>
             </div>
         </div>

@@ -11,9 +11,10 @@
 
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" type="" href="stilo1.css">
 <div class="container contGeneral ">     
     <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-7 contTabla">
             <div class="p-4">
              
                     <table class="table">
@@ -41,8 +42,8 @@
                                 <?php if ($id_rol == 1) 
                                 { ?>
                                
-                                <td><a class="text-success btn-editar" href="#" data-id="<?php echo $dato->idP; ?>"><i class="bi bi-trash"></i></a></td>
-                                <td><a onclick="return confirm('Estas seguro de eliminar el registro?');" class="text-danger" href="vista/eliminar.php?idP=<?php echo $dato->idP; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a class="text-success btn-editar" href="#" data-id="<?php echo $dato->idP; ?>"><i class="bi bi-pencil-square"></i></a></td>
+                                <td><a onclick="return confirm('Estas seguro de eliminar el registro?');" class="text-danger" href="vista/eliminar.php?idP=<?php echo $dato->idP; ?>"><i class="bi bi-trash"></i></a></td>
                                 <?php
                                     } else { 
                                 ?>
@@ -66,7 +67,7 @@
         <div class="col-md-5 contRegistronuevo">
         <div class="card">
                 <div class="card-header">
-                    Ingresar datos
+                    Ingresar Nuevo Registro
                 </div>
                 <form class="p-4" method="POST" action="controlador/controlador_registrar.php">
                     <div class="mb-3">
@@ -79,7 +80,7 @@
                         <input type="number" class="form-control" name="txtEdad" autofocus required>
                         <div id="edadError" class="text-danger"></div> <!-- Mensaje de error -->
                     </div>
-                    <!-- ... (otras partes del formulario) ... -->
+                 
                     <div class="mb-3">
                         <label class="form-label"> Signo: </label>
                         <div class="dropdown">
